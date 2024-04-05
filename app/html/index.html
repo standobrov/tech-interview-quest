@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Quest Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #output {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #output img {
+            display: block;
+            margin: 20px auto;
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/');
+                const data = await response.text();
+                if (response.status === 200) {
+                    document.getElementById('output').innerHTML = data + '<img src="./cool-doge-doge.gif" alt="Cool doge">';
+                } else {
+                    document.getElementById('output').innerHTML = data + '<img src="./not-cool-doge-doge.gif" alt="Error">';
+                }
+            } catch (error) {
+                console.error('error receiving data:', error);
+            }
+        }
+
+        window.onload = fetchData;
+    </script>
+</body>
+</html>

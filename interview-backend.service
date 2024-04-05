@@ -1,0 +1,12 @@
+[Unit]
+Description=Interview Quest Web App Service
+
+[Service]
+User=saddogalone
+StandardOutput=append:/opt/log/interview-backend.log
+Restart=always
+ExecStart=/usr/bin/python3 /home/saddogalone/projects/tech-interview-quest/app/interview_backend.py
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
