@@ -2,7 +2,7 @@
 set -xe
 
 #installing stuff
-apt install -y nginx python3.10-pip python3-venv
+apt install -y nginx python3-pip python3-venv
 /usr/bin/python3 -m venv .venv
 source .venv/bin/activate
 pip3 install -r requirements.txt
