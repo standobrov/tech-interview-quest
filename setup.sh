@@ -17,8 +17,14 @@ sudo cp flask_app /etc/nginx/sites-available/
 sudo ln -s /etc/nginx/sites-available/flask_app /etc/nginx/sites-enabled/
 sudo rm -fv /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx.service
+cp -f interview-backend.service /etc/systemd/system/interview-backend.service
+chmod 644 /etc/systemd/system/interview-backend.service
 
 #launching the broken backend...
-python3 ./app/broken_backend.py &
+nohup python3 ./app/broken_backend.py 2>&1 &
+disown
 
-#correct backend file is interview_backend.py
+systemctl enable interview-backend.service
+systemctl start interview-backend.service
+
+
